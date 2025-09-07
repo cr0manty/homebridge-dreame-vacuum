@@ -1,0 +1,44 @@
+{
+  "pluginAlias": "DreameVacuum",
+  "pluginType": "platform",
+  "schema": {
+    "type": "object",
+    "properties": {
+      "devices": {
+        "type": "array",
+        "items": {
+          "title": "Dreame Device",
+          "type": "object",
+          "properties": {
+            "name": { "type": "string", "required": true },
+            "ip": { "type": "string" },
+            "token": { "type": "string" },
+            "model": { "type": "string", "description": "e.g. dreame.vacuum.p2187, ijai.vacuum.v3, etc." },
+            "useCloud": { "type": "boolean", "default": false },
+            "miAccount": {
+              "type": "object",
+              "properties": {
+                "username": { "type": "string" },
+                "password": { "type": "string" },
+                "country":  { "type": "string", "enum": ["cn","de","us","ru","sg","in"], "default": "de" }
+              }
+            },
+            "rooms": {
+              "type": "array",
+              "items": { "type": "object", "properties": {
+                "name": { "type": "string" },
+                "roomId": { "type": "integer" }
+              }}
+            },
+            "miotOverrides": {
+              "type": "object",
+              "description": "Override SIID/PIID/AIID mapping per action/property"
+            }
+          },
+          "required": ["name"]
+        }
+      },
+      "pollInterval": { "type": "integer", "default": 5000 }
+    }
+  }
+}
