@@ -4,6 +4,7 @@
   "schema": {
     "type": "object",
     "properties": {
+      "pollInterval": { "type": "integer", "default": 5000 },
       "devices": {
         "type": "array",
         "items": {
@@ -11,17 +12,17 @@
           "type": "object",
           "properties": {
             "name": { "type": "string", "required": true },
-            "ip": { "type": "string" },
-            "token": { "type": "string" },
-            "model": { "type": "string", "description": "e.g. dreame.vacuum.p2187, ijai.vacuum.v3, etc." },
-            "useCloud": { "type": "boolean", "default": false },
-            "miAccount": {
+            "driver": { "type": "string", "enum": ["dreame-cloud"], "default": "dreame-cloud" },
+            "cloud": {
               "type": "object",
               "properties": {
                 "username": { "type": "string" },
                 "password": { "type": "string" },
-                "country":  { "type": "string", "enum": ["cn","de","us","ru","sg","in"], "default": "de" }
-              }
+                "country":  { "type": "string", "enum": ["de","us","sg","cn","ru","in"], "default": "de" },
+                "appId":    { "type": "string", "default": "1010" },
+                "userAgent": { "type": "string", "default": "Dreamehome/1.0.0 (iOS;16.0)" }
+              },
+              "required": ["username","password"]
             },
             "rooms": {
               "type": "array",
@@ -29,16 +30,11 @@
                 "name": { "type": "string" },
                 "roomId": { "type": "integer" }
               }}
-            },
-            "miotOverrides": {
-              "type": "object",
-              "description": "Override SIID/PIID/AIID mapping per action/property"
             }
           },
-          "required": ["name"]
+          "required": ["name","driver","cloud"]
         }
-      },
-      "pollInterval": { "type": "integer", "default": 5000 }
+      }
     }
   }
 }
