@@ -34,7 +34,6 @@ class DreamePlatform implements DynamicPlatformPlugin {
         username: dev.cloud.username!,
         password: dev.cloud.password!,
         country: (dev.cloud.country || 'de') as any,
-        appId: dev.cloud.appId,
         userAgent: dev.cloud.userAgent,
       });
       await cloud.login();

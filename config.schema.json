@@ -19,7 +19,6 @@
                 "username": { "type": "string" },
                 "password": { "type": "string" },
                 "country":  { "type": "string", "enum": ["de","us","sg","cn","ru","in"], "default": "de" },
-                "appId":    { "type": "string", "default": "1010" },
                 "userAgent": { "type": "string", "default": "Dreamehome/1.0.0 (iOS;16.0)" }
               },
               "required": ["username","password"]
